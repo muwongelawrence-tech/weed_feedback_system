@@ -15,13 +15,14 @@ class MyAppThemes {
       //appBar theme
       appBarTheme: const AppBarTheme(
         //ApBar's color
-        color: Colors.lightGreen,
+        color:  Color.fromARGB(255, 12, 49, 25),
 
         //Theme for AppBar's icons
         iconTheme: IconThemeData(
           color: Colors.white,
         ),
       ),
+      
       //Theme for app's icons
       iconTheme: const IconThemeData(
         color: Colors.black,
