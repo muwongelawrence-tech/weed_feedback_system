@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:weedfeedbacksystem/details_screen.dart';
 import 'package:weedfeedbacksystem/item_card.dart';
-import 'package:weedfeedbacksystem/post.dart';
+// import 'package:weedfeedbacksystem/post.dart';
+import 'package:dio/dio.dart';
+import 'package:http_parser/http_parser.dart';
 
 
 void main() {
@@ -83,6 +85,29 @@ class _WeedRecognizerState extends State<WeedRecognizer> {
   //Setting a default theme
   var currentTheme = APP_THEME.LIGHT;
 
+   List posts = [];
+
+void getData() async {
+
+   var response = await Dio().get('https://blooming-ravine-57312.herokuapp.com/api/uploads');
+
+   print("--------------------GETTING DATA FROM THE API------------------");
+//  print(response);
+
+ setState(() {
+   posts = response.data;
+   print(posts);
+ });
+
+
+}
+
+
+ @override
+  void initState() {
+    super.initState();
+    getData();
+  }
  
 
   @override
@@ -96,7 +121,7 @@ class _WeedRecognizerState extends State<WeedRecognizer> {
           ? MyAppThemes.appThemeDark()
           : MyAppThemes.appThemeLight(),
       home: Scaffold(
-        appBar: buildAppBarWidget(), 
+        appBar: buildAppBarWidget(context), 
         body: buildBodyWidget(context),
 
         //Code for FAB (floating Action button)
@@ -114,10 +139,10 @@ class _WeedRecognizerState extends State<WeedRecognizer> {
       ),
     );
   }
-}
 
-// AppBar of the Scaffold Widget.
-PreferredSizeWidget buildAppBarWidget() {
+
+  // AppBar of the Scaffold Widget.
+PreferredSizeWidget buildAppBarWidget(BuildContext context) {
   return AppBar(
     leading: IconButton(
       icon : const Icon(Icons.menu),
@@ -131,6 +156,7 @@ PreferredSizeWidget buildAppBarWidget() {
         icon: const Icon(Icons.refresh),
         onPressed: () {
           print("application is being refreshed.");
+          
         },
       ),
       IconButton(
@@ -196,9 +222,9 @@ Widget buildBodyWidget( BuildContext context) {
                 child: Container(
                    
                   padding: const EdgeInsets.only(
-                      top: 800.0 * 0.12,
-                      left: 20.0,
-                      right: 20.0,
+                      top: 200.0 * 0.12,
+                      left: 10.0,
+                      right: 10.0,
                       bottom: 20.0
                   ),
 
@@ -211,11 +237,15 @@ Widget buildBodyWidget( BuildContext context) {
                           topRight: Radius.circular(24),
                   )),
 
-                  child: Column(
+
+                  child:  Column(
                       children: <Widget>[
                           
                               
-                            const  Center(child: Text("posts will  appear here"),),
+                          const  Center(child: Text("Recent detections",
+                           style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15, fontFamily: 'Roboto'),
+                          ),
+                          ),
 
                            Expanded(
 
@@ -223,24 +253,17 @@ Widget buildBodyWidget( BuildContext context) {
 
                             padding: const EdgeInsets.symmetric(horizontal: 20.0),
 
-                            child: GridView.builder(
+                            child: ListView.builder(
 
                             itemCount: posts.length,
 
-                           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                           crossAxisCount: 2,
-                           mainAxisSpacing: 20.0,
-                           crossAxisSpacing: 20.0,
-                           childAspectRatio: 0.65
-                          ),
+                            itemBuilder: (context ,index) =>  ItemCard(
 
-                         itemBuilder: (context ,index) =>  ItemCard(
-
-                         post: posts[index], 
+                            post: posts[index], 
                       
-                         press: () =>  Navigator.push(
-                         context, 
-                        MaterialPageRoute(builder: (context) => DetailsScreen(post: posts[index]))
+                            press: () =>  Navigator.push(
+                            context, 
+                            MaterialPageRoute(builder: (context) => DetailsScreen(post: posts[index]))
                       ),
                     ),
 
@@ -249,8 +272,10 @@ Widget buildBodyWidget( BuildContext context) {
             ),
 
              ],
-                    ),
-                ),
+           ),
+        
+        
+        ),
                 
                 right: 0,
                 left:0,
@@ -265,3 +290,7 @@ Widget buildBodyWidget( BuildContext context) {
       ],
     ));
 }
+
+  
+}
+
