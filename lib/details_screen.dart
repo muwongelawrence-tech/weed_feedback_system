@@ -112,7 +112,7 @@ Widget  buildDetailsBody(BuildContext context , post) {
                         Container(
                         margin: const EdgeInsets.all(10.0),
                         child: const Text(
-                          'Possible Advise',
+                          'Recommendations to the Farmer.',
                           style: TextStyle(fontWeight: FontWeight.bold , fontSize: 15),
                         ),
                        ),
@@ -123,7 +123,7 @@ Widget  buildDetailsBody(BuildContext context , post) {
                           child:  Text(
                             post['feedback'],
                             overflow: TextOverflow.ellipsis,
-                            maxLines: 4,
+                            maxLines: 8,
                              softWrap: true,
                           ),
                         ),

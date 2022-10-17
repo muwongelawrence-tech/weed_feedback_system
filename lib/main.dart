@@ -7,7 +7,7 @@ import 'package:http_parser/http_parser.dart';
 
 
 void main() {
-  runApp(const WeedRecognizer());
+  runApp( const WeedRecognizer());
 }
 
 enum APP_THEME { LIGHT, DARK }
@@ -79,9 +79,15 @@ class WeedRecognizer extends StatefulWidget {
 
   @override
   _WeedRecognizerState createState() => _WeedRecognizerState();
+
+
 }
 
 class _WeedRecognizerState extends State<WeedRecognizer> {
+
+    // final GlobalKey<RefreshIndicatorState> _refreshIndicatorKey =
+    // new GlobalKey<RefreshIndicatorState> ();
+
   //Setting a default theme
   var currentTheme = APP_THEME.LIGHT;
 
@@ -100,6 +106,11 @@ void getData() async {
  });
 
 
+}
+
+
+Future<void> _refresh() async {
+    getData();
 }
 
 
@@ -154,8 +165,12 @@ PreferredSizeWidget buildAppBarWidget(BuildContext context) {
     actions: <Widget>[
       IconButton(
         icon: const Icon(Icons.refresh),
+        tooltip: 'Refresh',
         onPressed: () {
           print("application is being refreshed.");
+           
+           _refresh();
+          //  _refreshIndicatorKey.currentState.show();
           
         },
       ),
