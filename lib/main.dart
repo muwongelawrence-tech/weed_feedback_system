@@ -98,7 +98,7 @@ void getData() async {
    var response = await Dio().get('https://blooming-ravine-57312.herokuapp.com/api/uploads');
 
    print("--------------------GETTING DATA FROM THE API------------------");
-//  print(response);
+  //  print(response);
 
  setState(() {
    posts = response.data;
@@ -273,9 +273,7 @@ Widget buildBodyWidget( BuildContext context) {
                             itemCount: posts.length,
 
                             itemBuilder: (context ,index) =>  ItemCard(
-
-                            post: posts[index], 
-                      
+                            post: posts[index],
                             press: () =>  Navigator.push(
                             context, 
                             MaterialPageRoute(builder: (context) => DetailsScreen(post: posts[index]))
