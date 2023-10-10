@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.weedfeedbacksystem">
+    package="com.example.weed_detector_receiver">
    <application
-        android:label="weedfeedbacksystem"
+        android:label="weed_detector_receiver"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-// import 'package:weedfeedbacksystem/post.dart';
 
 class DetailsScreen extends StatelessWidget {
   // final Post post;
@@ -67,8 +66,7 @@ Widget  buildDetailsBody(BuildContext context , post) {
               height: 350,
               margin: const EdgeInsets.only(left: 5.0, right: 5.0),
               child: post['image'] != null
-                  ? Image.network(
-                    "https://blooming-ravine-57312.herokuapp.com/" + post['image'].substring(7),
+                  ? Image.network(post['image'],
                      fit: BoxFit.cover, height: 250)
                   : const Text("image not uploaded",
                       style: TextStyle(color: Colors.black)),

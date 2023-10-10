@@ -1,6 +1,6 @@
 {
-    "name": "weedfeedbacksystem",
-    "short_name": "weedfeedbacksystem",
+    "name": "weed_detector_receiver",
+    "short_name": "weed_detector_receiver",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

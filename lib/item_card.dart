@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-// import 'package:weedfeedbacksystem/post.dart';
 
 //creating a  stateful widget.
 class ItemCard extends StatefulWidget {
@@ -14,20 +13,8 @@ class ItemCard extends StatefulWidget {
 }
 
 class _ItemCardState extends State<ItemCard> {
-  // final  post;
-  // final  time;
-  // final VoidCallback press;
+ 
   DateTime? date;
-
-  // ItemCard({ Key? key, required this.post, required this.press, required this.time })
-  //     : super(key: key);
-
-  // DateTime now = post['date'];
-  // @override
-  // void initState() {
-  //   super.initState();
-  //   getDate();
-  // }
 
   getFormattedDateFromFormattedString(
       {required value,
@@ -35,7 +22,7 @@ class _ItemCardState extends State<ItemCard> {
       required String desiredFormat,
       isUtc = false}) {
     DateTime? dateTime = DateTime.now();
-    if (value != null || value.isNotEmpty) {
+    if (value != null && value.isNotEmpty) {
       try {
         dateTime = DateFormat(currentFormat).parse(value, isUtc).toLocal();
       } catch (e) {
@@ -45,18 +32,6 @@ class _ItemCardState extends State<ItemCard> {
     return dateTime;
   }
 
-  // void getDate() {
-  //   DateTime dateTime = getFormattedDateFromFormattedString(
-  //       value: widget.post['date'],
-  //       currentFormat: "yyyy-MM-ddTHH:mm:ssZ",
-  //       desiredFormat: "yyyy-MM-dd HH:mm:ss");
-
-  //   print(dateTime); //2021-12-15 11:10:01.000
-
-  //   setState(() {
-  //     date = dateTime;
-  //   });
-  // }
 
   @override
   Widget build(BuildContext context) {
@@ -81,12 +56,8 @@ class _ItemCardState extends State<ItemCard> {
                     height: 150,
                     width: 140,
                     decoration: BoxDecoration(
-                        // color: Colors.blue,
                         image: DecorationImage(
-                            // image: AssetImage( post.image),
-                            image: NetworkImage(
-                                "https://blooming-ravine-57312.herokuapp.com/" +
-                                    widget.post['image'].substring(7)),
+                            image: NetworkImage(widget.post['image']),
                             fit: BoxFit.cover),
                         borderRadius: BorderRadius.circular(10)),
                     child: Center(

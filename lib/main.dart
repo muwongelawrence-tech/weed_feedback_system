@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:weedfeedbacksystem/details_screen.dart';
-import 'package:weedfeedbacksystem/item_card.dart';
-// import 'package:weedfeedbacksystem/post.dart';
+import './details_screen.dart';
+import './item_card.dart';
 import 'package:dio/dio.dart';
 import 'package:http_parser/http_parser.dart';
 
@@ -95,7 +94,7 @@ class _WeedRecognizerState extends State<WeedRecognizer> {
 
 void getData() async {
 
-   var response = await Dio().get('https://blooming-ravine-57312.herokuapp.com/api/uploads');
+   var response = await Dio().get('https://weed-detecion.onrender.com/api/detections');
 
    print("--------------------GETTING DATA FROM THE API------------------");
   //  print(response);
@@ -216,7 +215,7 @@ Widget buildBodyWidget( BuildContext context) {
                              child: Container(
                               padding: const  EdgeInsets.all(30.0),
                                child: const Text(
-                                 "Welcome to the weed feed back mobile application, built to let you to receive feedback from the weed detector system after detection of weeds in the area of the garden under surveillence.",
+                                 "Welcome to the weed detector receiver mobile application, built to let you to receive feedback from the weed detector system after detection of weeds in the area of the garden under surveillence.",
                                   style: TextStyle(
                                   fontSize: 15.0,
                                   color: Colors.white
@@ -257,7 +256,7 @@ Widget buildBodyWidget( BuildContext context) {
                       children: <Widget>[
                           
                               
-                          const  Center(child: Text("Recent detections",
+                          const  Center(child: Text("RECENT DETECTIONS",
                            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15, fontFamily: 'Roboto'),
                           ),
                           ),
